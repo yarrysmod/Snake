@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <title>Snake</title>
+    <meta charset="utf-8">
+
+    <script src="./snake.js"></script>
+    <link rel="stylesheet" href="snake.css">
+</head>
+<body>
+    <canvas width="800" height="400"></canvas>
+    <script>
+        var canvasWrapperInstance = new Snake();
+
+        document.onkeypress = function processKeyPress (event) {
+            var keyCode = event.keyCode;
+            var charCode = event.charCode;
+
+            if (keyCode >= 37 && keyCode <= 40) {
+                return canvasWrapperInstance.moveSnake(keyCode);
+            } else if (charCode && canvasWrapperInstance.speedOperations.indexOf(charCode) !== -1) {
+                return canvasWrapperInstance.changeIntervalSpeed(charCode);
+            }
+        };
+    </script>
+</body>
+</html>
