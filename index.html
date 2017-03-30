@@ -16,6 +16,8 @@
             var keyCode = event.keyCode;
             var charCode = event.charCode;
 
+            keyCode = canvasWrapperInstance.tryDirectionMap(keyCode);
+
             if (keyCode >= 37 && keyCode <= 40) {
                 return canvasWrapperInstance.moveSnake(keyCode);
             } else if (charCode && canvasWrapperInstance.speedOperations.indexOf(charCode) !== -1) {

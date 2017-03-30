@@ -13,6 +13,12 @@ var Snake = function Snake () {
   this.drawSnake();
 };
 
+Snake.prototype.directionMappings = {
+  LEFT: [65, 97], // a A
+  UP: [87, 119], // w W
+  RIGHT: [68, 100], // d D
+  DOWN: [83, 115] // s S
+};
 Snake.prototype.directions = {
   LEFT: 37,
   UP: 38,
@@ -36,6 +42,21 @@ Snake.prototype.speedOperations = [
   Snake.prototype.operations.DECREASE,
   Snake.prototype.operations.INCREASE
 ];
+
+Snake.prototype.tryDirectionMap = function tryDirectionMap (keyCode) {
+  var directionMappings = this.directionMappings;
+  var directions = this.directions;
+
+  Object.keys(directionMappings).some(function processMappingKey (mappingKey) {
+    if (directionMappings[mappingKey].indexOf(keyCode) !== -1) {
+      keyCode = directions[mappingKey];
+
+      return true;
+    }
+  });
+
+  return keyCode;
+};
 
 Snake.prototype.moveSnake = function moveSnake (direction, ignoreCheck) {
   if (!direction) {
